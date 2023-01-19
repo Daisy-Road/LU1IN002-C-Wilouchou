@@ -17,6 +17,8 @@ Format:
 etc.
 */
 
+//test
+
 int FoncAff(const char* aff, int val); // Prototype
 float absval(float val); // Prototype
 int sommeIntWhile(int val); // Prototype
