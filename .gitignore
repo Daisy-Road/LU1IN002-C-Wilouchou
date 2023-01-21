@@ -1,5 +1,5 @@
-# Ignoring .vscode
-.vscode/
+# Ignoring hidden files
+.*/
 
 # Ignoring out binary files
 *.out
