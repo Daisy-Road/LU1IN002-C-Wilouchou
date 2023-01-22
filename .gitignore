@@ -3,3 +3,5 @@
 
 # Ignoring out binary files
 *.out
+# Ignoring debug binary files
+*.db
