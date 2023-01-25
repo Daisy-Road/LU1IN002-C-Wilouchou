@@ -9,7 +9,7 @@
 float prixPlace(const int age, const int jour, const float heure);
 
 int main() {
-    int age = 24;
+    int age = 25;
     int jour = 6;
     float heure = 9.5;
     printf(
