@@ -55,7 +55,7 @@ float prixPlace(const int age, const int jour, const float heure) {
         return TMOINS26S;
     } else if (heure >= 8 && heure <= 11) {
         return TMATIN;
-    } else if (age < 26 && jour > 5) {
+    } else if (age < 26) {
         return TMOINS26WE;
     } else {
         return TNORMAL;
