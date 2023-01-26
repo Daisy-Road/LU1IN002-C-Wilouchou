@@ -15,11 +15,11 @@ int main() {
 }
 
 int signeSomme(const int a, const int b) {
-    if ((a < 0 && -a > b) || (b < 0 && -b > a)) {
-        return -1;
-    } else if (a == -b) {
-        return 0;
-    } else {
+    if (a > -b) {
         return 1;
+    } if (a < -b) {
+        return -1;
+    } else {
+        return 0;
     }
 }
