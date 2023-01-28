@@ -18,5 +18,12 @@ int main() {
   x=f(a);
   y=g();
   printf("%d %d %d %d %d\n", x, y, a, b, c);
+
+  int d;
+  int* e;
+  e = &d;
+  //*e=5;
+  d=5;
+  printf("%d\n", d);
   return 0;
 }
