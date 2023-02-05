@@ -1,5 +1,20 @@
 #include <cini.h>
 
+#define WIDTH 500
+#define HEIGHT 500
+
+void carre(int length, int x, int y);
+void carres_remontant(int length, int x, int y);
+
+int main() {
+
+    CINI_open_window(WIDTH, HEIGHT, "main");
+    CINI_fill_window("white");
+    carres_remontant(150, 200, 200);
+    CINI_loop();
+    return 0;
+}
+
 void carre(int length, int x, int y) {
     int i;
     for(i = 0; i < length; i++) {
@@ -10,11 +25,14 @@ void carre(int length, int x, int y) {
     }
 }
 
-int main() {
+void carres_remontant(int length, int x, int y) {
+    
+    int i = 0;
+    while(x >= 0 || y >= 0) {
+        carre(length, x, y);
+        x -= 20;
+        y -= 20;
+        i++;
+    }
 
-    CINI_open_window(500, 500, "main");
-    CINI_fill_window("white");
-    carre(150, 200, 200);
-    CINI_loop();
-    return 0;
 }
