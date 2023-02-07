@@ -4,13 +4,13 @@
 #define TENFANT 10.75
 
 float prixEntree(int adultes, int enfants){
-  float prix_base = adultes*22.7 + enfants*10.75;
-  float prix_formule = 57.8;
+  float prix_base = adultes*TADULTE + enfants*TENFANT;
+  float prix_formule = TFAMILLE;
   if(adultes > 2) {
-    prix_formule = prix_formule + (adultes-2)*22.7;
+    prix_formule = prix_formule + (adultes-2)*TADULTE;
   }
   if(enfants > 3) {
-    prix_formule = prix_formule + (enfants-3)*10.75;
+    prix_formule = prix_formule + (enfants-3)*TENFANT;
   }
   if(prix_base > prix_formule) {
     return prix_formule;
