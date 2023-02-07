@@ -1,19 +1,10 @@
 #include <stdio.h>
-
+#define TFAMILLE 57.8
 #define TADULTE 22.7
-#define TENFANTS 10.75
-#define TFAMILLE 57.80
-
-float prixEntree(int adultes, int enfants);
-
-
-int main() {
-    printf("Meilleur tarif: %.2f£\n",prixEntree(5, 7));
-    return 0;
-}
+#define TENFANT 10.75
 
 float prixEntree(int adultes, int enfants) {
-    float plein_tarif = TADULTE*adultes + TENFANTS*enfants;
+    float plein_tarif = TADULTE*adultes + TENFANT*enfants;
     float tarif_famille = plein_tarif;
     float min_tarif = plein_tarif;
     int nb_tarif = 0;
@@ -29,7 +20,7 @@ float prixEntree(int adultes, int enfants) {
             a_tmp -= 2;
         }
         if(e_tmp >= 3) {
-            tarif_famille += TENFANTS*(e_tmp-3);
+            tarif_famille += TENFANT*(e_tmp-3);
             e_tmp -= 3;
         }
         if(min_tarif > tarif_famille) {
@@ -42,11 +33,21 @@ float prixEntree(int adultes, int enfants) {
         min_tarif = tarif_famille + TFAMILLE;
     }
     
-    printf("Le plus optimisé serait %d tarifs famille !\n", nb_tarif);
     if(min_tarif > plein_tarif) {
         return plein_tarif;
     } else {
         return min_tarif;
     }
+}
 
+
+int main() {
+  int nb_a, nb_e;
+  
+  scanf("%d",&nb_a);
+  scanf("%d",&nb_e);
+  
+  printf("(%d adulte(s), %d enfant(s)) = %.2f livres\n",nb_a,nb_e,prixEntree(nb_a,nb_e));
+  
+  return 0;
 }
