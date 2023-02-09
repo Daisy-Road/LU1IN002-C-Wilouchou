@@ -10,7 +10,8 @@ float prixEntree(int adultes, int enfants) {
     int nb_tarif = 0;
     int a_tmp = adultes; int e_tmp = enfants;
 
-    do {
+    while((a_tmp >= 2 || e_tmp >= 3) && (adultes != 0 && enfants != 0)) 
+    {
         
         nb_tarif++;
         tarif_famille = nb_tarif*TFAMILLE;
@@ -27,10 +28,10 @@ float prixEntree(int adultes, int enfants) {
             min_tarif = tarif_famille;
         }
 
-    } while((a_tmp >= 2 || e_tmp >= 3) && (adultes > 0 && enfants > 0));
+    }
 
     if((a_tmp > 0 || e_tmp > 0) && min_tarif > tarif_famille+TFAMILLE) {
-        min_tarif = tarif_famille + TFAMILLE;
+        return tarif_famille + TFAMILLE;
     }
     
     if(min_tarif > plein_tarif) {
