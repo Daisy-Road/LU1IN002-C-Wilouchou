@@ -1,8 +1,8 @@
 #include <cini.h>
 #include <math.h>
 
-#define WIDTH 1200
-#define HEIGHT 700
+#define WIDTH 500
+#define HEIGHT 500
 #define EPSILON 1
 
 void triangles(int width, int height, float epsilon);
