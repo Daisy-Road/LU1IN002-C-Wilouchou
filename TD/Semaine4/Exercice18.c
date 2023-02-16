@@ -26,6 +26,11 @@ int main() {
 }
 
 int* init_alea(int min, int max, int length) {
+    /*
+     * This works if tab is not already and not mentionned in the function's
+     * parameters We could have also used a pointer to an array of int in our
+     * parameters and skip the malloc line
+     */
     int* tab = malloc(length * sizeof(int));
     for (int i = 0; i < length; i++) {
         tab[i] = rand() % (max - min + 1) + min;
