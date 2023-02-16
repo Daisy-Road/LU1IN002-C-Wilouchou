@@ -9,24 +9,20 @@
 /* Dans la fonction affiche_racines, vous devrez compléter l'appel à la fonction
  * racines */
 
+int discriminant(int a, int b, int c) { return b * b - 4 * a * c; }
+
 int nb_racines(int a, int b, int c) {
-    int delta = b * b - 4 * a * c;
-    if (delta < 0)
-        return 0;
-    if (delta > 0)
-        return 2;
-    else
-        return 1;
+    int delta = discriminant(a, b, c);
+    if (delta < 0) return 0;
+    if (delta > 0) return 2;
+    else return 1;
 }
 
 int nb_racines_delta(int a, int b, int c, int* store_discrim) {
-    *store_discrim = b * b - 4 * a * c;
-    if (*store_discrim < 0)
-        return 0;
-    if (*store_discrim > 0)
-        return 2;
-    else
-        return 1;
+    *store_discrim = discriminant(a, b, c);
+    if (*store_discrim < 0) return 0;
+    if (*store_discrim > 0) return 2;
+    else return 1;
 }
 
 int racines(int a, int b, int c, float* x1, float* x2) {
@@ -85,12 +81,8 @@ void affiche_racines(int a, int b, int c) {
     if (nb_rac == 2) {
         printf("Le polynome a 2 racines : %.3f et %.3f\n", rac1, rac2);
     }
-    if (nb_rac == 1) {
-        printf("Le polynome a 1 racine double : %.3f\n", rac1);
-    }
-    if (nb_rac == 0) {
-        printf("Le polynome n'a pas de racine reelle.\n");
-    }
+    if (nb_rac == 1) { printf("Le polynome a 1 racine double : %.3f\n", rac1); }
+    if (nb_rac == 0) { printf("Le polynome n'a pas de racine reelle.\n"); }
 }
 
 int main() {
