@@ -9,7 +9,7 @@ int valeur(void) {
 }
 
 /* Vous ne devez pas modifier le type de retour de la fonction */
-void ma_fonction(int n, int *somme, int *carre) {
+void ma_fonction(int n, int* somme, int* carre) {
     *somme = 0;
     *carre = 0;
     int value;
