@@ -2,25 +2,44 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define TIMEOUT 10
+#define LEN 20
+#define STEP 3
 
-void init_rand_ord_tab(int* tab, int len) {
+// Generate a random ordered table
+void init_rand_ord_tab(int* tab, int len, int step) {
     int min = 0;
-    int max = 5;
+    int max = step;
     for (int i = 0; i < len; i++) {
         tab[i] = (rand() % (max - min + 1)) + min;
-        max += 5;
-        min += 5;
+        max += step;
+        min += step;
     }
 }
 
+// Print function of a table
 void affiche(int* tab, int len) {
     printf("tab = {");
     for (int i = 0; i < len - 1; i++) {
         printf("%d, ", tab[i]);
     }
-    printf("%d}\n", tab[len - 1]);
+    printf("%d};\n", tab[len - 1]);
 }
+
+/* Question 1:
+ *
+ * Indice du milieu: (d+g)/2
+ * [g, (d+g)/2-1]
+ * [(d+g)/2+1, d]
+ *
+ * Question 2:
+ * Lorsque le g dépasse d
+ * Ou lorsqu'ils sont égaux et que la valeur n'est
+ * pas la bonne
+ *
+ * Question 3:
+ * d >= g
+ *
+ * */
 
 int recherche(int* tab, int len, int num) {
     int min = 0;
@@ -42,20 +61,20 @@ int recherche_recu(int* tab, int len, int num) {
     int i = len / 2;
     if (len == 0) return 0;
     if (tab[i] == num) return 1;
-    if (tab[i] < num) return recherche_recu(tab + len / 2 + 1, len / 2, num);
-    else return recherche_recu(tab, len / 2 - 1, num);
+    if (tab[i] < num) return recherche_recu(tab + i + 1, i, num);
+    else return recherche_recu(tab, i, num);
 }
 
 int main() {
     srand(time(NULL));
-    int tab[10];
+    int tab[LEN];
     int search;
-    init_rand_ord_tab(tab, 10);
-    affiche(tab, 10);
+    init_rand_ord_tab(tab, LEN, STEP);
+    affiche(tab, LEN);
     printf("What are we looking for ? ");
     scanf("%d", &search);
     printf("\n");
-    printf("%d\n", recherche_recu(tab, 10, search));
+    printf("%d\n", recherche_recu(tab, LEN, search));
 
     return 0;
 }
