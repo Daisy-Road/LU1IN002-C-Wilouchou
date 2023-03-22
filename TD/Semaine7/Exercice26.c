@@ -46,7 +46,7 @@ void affiche_rectangles(rectangle r_list[], size_t len,
 
 int point_dans_rectangle(point p, rectangle r) {
     int between_x = (r.A.x <= p.x && p.x <= r.B.x);
-    int between_y = (r.A.y <= p.y && p.y <= r.B.y);
+    int between_y = (r.A.y >= p.y && p.y >= r.B.y); // The Y axis is inverted
     return between_x && between_y;
 }
 
@@ -55,14 +55,31 @@ int min(int a, int b) { return (a <= b) ? a : b; }
 int max(int a, int b) { return (a >= b) ? a : b; }
 
 rectangle intersection_rectangles(rectangle r1, rectangle r2) {
+    // Hypothesis: both rectangles must intersect each other
     rectangle res;
-    // Intersection des deux ensembles en A (borne inf)
-    res.A.x = max(r1.A.x, r2.A.x);
-    res.A.y = min(r1.A.y, r2.A.y);
+
+    /* A rectangle can be writtent like this
+     * Let A(xA, yA) the lower left corner of R,
+     * Let B(xB, yB) the upper right corner of R.
+     *
+     * R = { (x, y) | xA <= x <= xB and yA <= y <= yB }
+     *
+     * But the y axis is inverted here:
+     * Therefore:
+     *
+     * R = { (x, y) | xA <= x <= xB and yB <= y <= yA }
+     *
+     * For the intersection, we need to take the least possible
+     * values between both sets r1, r2
+     * Wich lead to this construction...*/
+
+    // Intersection of the two sets for point A
+    res.A.x = max(r1.A.x, r2.A.x); // lower bound
+    res.A.y = min(r1.A.y, r2.A.y); // upper bound (y axis is inverted)
     strcpy(res.A.color, "gray");
-    // Intersection des deux ensembles en B (borne sup)
-    res.B.x = min(r1.B.x, r2.B.x);
-    res.B.y = max(r1.B.y, r2.B.y);
+    // Intersection of the two sets for point B
+    res.B.x = min(r1.B.x, r2.B.x); // upper bound
+    res.B.y = max(r1.B.y, r2.B.y); // lower bound (y axis is inverted)
     strcpy(res.B.color, "gray");
     strcpy(res.color_line, "gray");
     strcpy(res.background, "gray");
