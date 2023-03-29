@@ -16,6 +16,12 @@ int tous_plus_grands(int val, cellule_t* liste) {
     return 1;
 }
 
+int tous_plus_grands_recu(int val, cellule_t* liste) {
+    if (!liste) return 1;
+    else if (liste->donnee < val) return 0;
+    return tous_plus_grands_recu(val, liste->suivant);
+}
+
 cellule_t* maximum(cellule_t* liste) {
     if (!liste) return liste;
     cellule_t* res = liste;
