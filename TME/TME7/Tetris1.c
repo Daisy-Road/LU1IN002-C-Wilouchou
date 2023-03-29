@@ -166,6 +166,13 @@ void rotation_gauche(struct piece* tetromino, int plateau[HAUTEUR][LARGEUR]) {
     }
 }
 
+int perdu(int plateau[HAUTEUR][LARGEUR]) {
+    for (int x = 0; x < LARGEUR; x++) {
+        if (plateau[0][x] != VIDE) return 1;
+    }
+    return 0;
+}
+
 void supprimer_lignes(int plateau[HAUTEUR][LARGEUR]) {
     int rm_size = 0;
     int broke = 0;
@@ -184,8 +191,8 @@ void supprimer_lignes(int plateau[HAUTEUR][LARGEUR]) {
                 break;
             }
         }
-        if (broke) break;
-        rm_size++;
+        if (broke && rm_size) break;
+        if (!broke) rm_size++;
     }
     if (!rm_size) return;
     for (y = y + rm_size; y >= 0; y--) {
@@ -336,7 +343,7 @@ int main() {
         /* on supprime les lignes completes si elles existent */
         supprimer_lignes(plateau);
 
-    } while (touche != SDLK_ESCAPE);
+    } while (touche != SDLK_ESCAPE && !perdu(plateau));
 
     return 0;
 }
