@@ -2,6 +2,10 @@
 
 #include <string.h>
 
+/* Nous avons défini un tableau dans la mémoire dont l'indice correspond à la
+ * somme des valeurs de notre clé Ensuite, nous récupérons différents
+ * dictionnaire en fonction de la clé de chaque élément */
+
 TabHash* createTabH(size_t s) {
     TabHash* th = malloc(sizeof(TabHash));
     th->size = s;
@@ -31,6 +35,7 @@ void add(TabHash* th, char* key, int value) {
     pD->key = strdup(key);
     pD->value = value;
     pD->next = th->tab[index];
+    th->tab[index] = pD;
 }
 
 void printTabHash(TabHash* th) {
