@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 void moveRight(int t[], size_t n);
+void moveRightMultiple(int t[], size_t n, size_t times);
 void moveLeft(int t[], size_t n);
 void printTable(int t[], size_t n);
 
@@ -11,6 +12,8 @@ int main() {
     printTable(tab, 5);
     moveLeft(tab, 5);
     printTable(tab, 5);
+    moveRightMultiple(tab, 5, 2);
+    printTable(tab, 5);
 }
 
 void moveRight(int t[], size_t n) {
@@ -18,6 +21,18 @@ void moveRight(int t[], size_t n) {
     for (int i = n - 1; i > 0; i--)
         t[i] = t[i - 1];
     t[0] = start;
+}
+
+void moveRightMultiple(int t[], size_t n, size_t times) {
+    times = times % n;
+    int j = 0;
+    int tmp = 0;
+    for (int i = 0; i < n - times; i++) {
+        tmp = t[i + times];
+        t[i + times] = t[j];
+        t[j] = tmp;
+        if (i + times >= n - times) j++;
+    }
 }
 
 void moveLeft(int t[], size_t n) {
